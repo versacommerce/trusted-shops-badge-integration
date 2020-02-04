@@ -1,0 +1,46 @@
+<script type="text/javascript">
+  (function () {
+    var _tsid = '{{ integration['tsid'] }}';
+    _tsConfig = {
+      'yOffset': '{{ integration['yOffset'] }}', /* offset from page bottom */
+      'variant': '{{ integration['variant'] }}', /* default, reviews, custom, custom_reviews */
+      'customElementId': '{{ integration['customElementId'] }}', /* required for variants custom and custom_reviews */
+      'trustcardDirection': '{{ integration['trustcardDirection'] }}', /* for custom variants: topRight, topLeft, bottomRight, bottomLeft */
+      'customBadgeWidth': '{{ integration['customBadgeWidth'] }}', /* for custom variants: 40 - 90 (in pixels) */
+      'customBadgeHeight': '{{ integration['customBadgeHeight'] }}', /* for custom variants: 40 - 90 (in pixels) */
+      'disableResponsive': '{{ integration['disableResponsive'] }}', /* deactivate responsive behaviour */
+      'disableTrustbadge': '{{ integration['disableTrustbadge'] }}' /* deactivate trustbadge */
+    };
+    var _ts = document.createElement('script');
+    _ts.type = 'text/javascript';
+    _ts.charset = 'utf-8';
+    _ts.async = true;
+    _ts.src = '//widgets.trustedshops.com/js/' + _tsid + '.js';
+    var __ts = document.getElementsByTagName('script')[0];
+    __ts.parentNode.insertBefore(_ts, __ts);
+  })();
+</script>
+{% if template contains 'thankyou' %}
+	<div id="trustedShopsCheckout" style="display: none;">
+  <span id="tsCheckoutOrderNr">{{ cart.order_code }}</span>
+  <span id="tsCheckoutBuyerEmail">{{ customer.email }}</span>
+  <span id="tsCheckoutOrderAmount">{{ cart.total_price_decimal }}</span>
+  <span id="tsCheckoutOrderCurrency">{{ shop.currency }}</span>
+  <span id="tsCheckoutOrderPaymentType">{{ cart.payment.title }}</span>
+  <span id="tsCheckoutOrderEstDeliveryDate">{{ cart.estimated_delivery | date: "%d.%m.%Y" }}</span>
+  <!-- product reviews start -->
+  <!-- for each product in the basket full set of data is required -->
+  {% for line in cart.items %}
+    <span class="tsCheckoutProductItem">
+    <span class="tsCheckoutProductUrl">{{ line.product.url }}</span>
+    <span class="tsCheckoutProductImageUrl">{{ line.product.featured_image }}</span>
+    <span class="tsCheckoutProductName">{{ line.title }}</span>
+    <span class="tsCheckoutProductSKU">{{ line.product.code }}</span>
+    <span class="tsCheckoutProductGTIN">{{ line.product.gtin }}</span>
+    <span class="tsCheckoutProductMPN">{{ line.product.mpn }}</span>
+    <span class="tsCheckoutProductBrand">{{ line.vendor }}</span>
+    </span>
+  {% endfor %}
+  <!-- product reviews end -->
+  </div>
+{% endif %}
