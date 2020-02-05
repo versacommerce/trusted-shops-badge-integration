@@ -1,5 +1,5 @@
-[<img src="versacommerce.png" width="250px" align="right" alt="VersaCommerce.de">](https://www.versacommerce.de/?utm_source=github)
-[<img src="trustedshops.png" width="90px" align="right" alt="trustedshops.de">](https://www.trustedshops.de/?utm_source=www.versacommerce.de)
+[<img src="versacommerce.png" width="250px" height="70px" align="right" alt="VersaCommerce.de">](https://www.versacommerce.de/?utm_source=github)
+[<img src="trustedshops.png" width="80px" height="80px" align="right" alt="trustedshops.de">](https://www.trustedshops.de/?utm_source=www.versacommerce.de)
 
 # Trusted Shops Badge Integration for VersaCommerce
 
